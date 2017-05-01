@@ -12,12 +12,15 @@ import javax.swing.JTextArea;
 import java.awt.Insets;
 import javax.swing.JTextField;
 import java.awt.Color;
+import javax.swing.JScrollPane;
+import javax.swing.JTextPane;
 
 public class UI extends JFrame {
 
 	private JPanel contentPane;
 	protected JTextField txtInput;
 	protected JButton btnBuscar;
+	private JScrollPane scrollPane; 
 	protected JTextArea txtOutput;
 
 	/**
@@ -56,13 +59,18 @@ public class UI extends JFrame {
 		gbc_btnBuscar.gridy = 0;
 		contentPane.add(btnBuscar, gbc_btnBuscar);
 		
+		scrollPane = new JScrollPane();
+		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
+		gbc_scrollPane.gridwidth = 2;
+		gbc_scrollPane.insets = new Insets(0, 0, 0, 5);
+		gbc_scrollPane.fill = GridBagConstraints.BOTH;
+		gbc_scrollPane.gridx = 0;
+		gbc_scrollPane.gridy = 1;
+		contentPane.add(scrollPane, gbc_scrollPane);
+		
 		txtOutput = new JTextArea();
-		GridBagConstraints gbc_txtOutput = new GridBagConstraints();
-		gbc_txtOutput.gridwidth = 2;
-		gbc_txtOutput.fill = GridBagConstraints.BOTH;
-		gbc_txtOutput.gridx = 0;
-		gbc_txtOutput.gridy = 1;
-		contentPane.add(txtOutput, gbc_txtOutput);
+		txtOutput.setEditable(false);
+		scrollPane.setViewportView(txtOutput);
 	}
 
 }
