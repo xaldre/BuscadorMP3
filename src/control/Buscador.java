@@ -3,33 +3,34 @@ package control;
 import java.io.File;
 import java.util.StringTokenizer;
 
+import javax.swing.text.BadLocationException;
+import javax.swing.text.Document;
+
 public class Buscador {
 	StringBuilder encontrados;
 
 	/**
 	 * Busca entre el contenido de una ruta especificada por archivos con
-	 * extension mp3
+	 * extension mp3 y los añade a un documento
 	 * 
 	 * @param arbol
 	 *            File con la ruta a buscar
-	 * @return String con las rutas encontradas o Vacio si no encuentra ninguno
+	 * @param document
+	 *            Documento al que añadir las incurrencias obtenidas mediante la
+	 *            busqueda
 	 */
-	public String buscarMp3(File arbol) {
+	public void buscarMp3(File arbol, Document document) {
 		StringBuilder encontrados = new StringBuilder();
-		String extension = "mp3";
-
-		busquedaRecursiva(arbol, encontrados, extension);
-		return encontrados.toString();
-
+		busquedaRecursiva(arbol, encontrados, "mp3", document);
 	}
 
-	private static void busquedaRecursiva(File arbol, StringBuilder encontrados, String extension) {
+	private static void busquedaRecursiva(File arbol, StringBuilder encontrados, String extension, Document document) {
 		if (arbol.exists() && arbol.list() != null) {
 			File[] listFiles = arbol.listFiles();
 			for (File file : listFiles) {
 				if (file.isDirectory()) {
 					if (file.canExecute()) {
-						busquedaRecursiva(file, encontrados, extension);
+						busquedaRecursiva(file, encontrados, extension, document);
 					}
 				} else {
 					StringTokenizer path = new StringTokenizer(file.toString(), "//.");
@@ -38,7 +39,11 @@ public class Buscador {
 						path.nextToken();
 					}
 					if (path.nextToken().toString().equals(extension)) {
-						encontrados.append(file.getAbsolutePath().toString()+"\n");
+						try {
+							document.insertString(document.getLength(), file.getAbsolutePath().toString() + "\n", null);
+						} catch (BadLocationException exc) {
+							exc.printStackTrace();
+						}
 					}
 
 				}
