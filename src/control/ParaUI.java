@@ -36,7 +36,7 @@ public class ParaUI extends UI {
 		setEnabledUserInput(false);
 		if (!txtInput.getText().isEmpty()) {
 			txtOutput.setText("");
-			buscador.buscarMp3(new File(txtInput.getText()),txtOutput.getDocument());
+			txtOutput.append(buscador.buscarMp3(new File(txtInput.getText())));
 
 		} else {
 			txtOutput.setText("Por favor, introduzca una ruta valida");
