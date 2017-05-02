@@ -38,7 +38,7 @@ public class Buscador {
 						path.nextToken();
 					}
 					if (path.nextToken().toString().equals(extension)) {
-						encontrados.append(file.getAbsolutePath().toString()+"\n");
+						encontrados.append(file.getAbsolutePath().toString()+"\n"+"\r");
 					}
 
 				}
