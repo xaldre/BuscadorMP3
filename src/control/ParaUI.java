@@ -10,15 +10,17 @@ import java.util.StringTokenizer;
 import javax.swing.SwingUtilities;
 
 import jdk.nashorn.internal.parser.Token;
+import modelo.Recorder;
 import vista.UI;
 
 public class ParaUI extends UI {
 	Buscador buscador = new Buscador();
+	Recorder recorder = new Recorder();
 
 	public ParaUI() {
 		btnBuscar.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				searchMp3();
+				getMp3();
 			}
 		});
 
@@ -26,17 +28,22 @@ public class ParaUI extends UI {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				searchMp3();
+				getMp3();
 			}
 		});
 	}
 
-	protected void searchMp3() {
+	protected void getMp3() {
 		setText();
 		setEnabledUserInput(false);
 		if (!txtInput.getText().isEmpty()) {
 			txtOutput.setText("");
-			txtOutput.append(buscador.buscarMp3(new File(txtInput.getText())));
+			String path = txtInput.getText();
+			String list = buscador.buscarMp3(new File(path));
+			txtOutput.append(list);
+			recorder.save(list, path);
+			
+			
 
 		} else {
 			txtOutput.setText("Por favor, introduzca una ruta valida");
