@@ -1,7 +1,5 @@
 package modelo;
 
-import java.util.StringTokenizer;
-
 public class Recorder {
 	String folder = "results\\";
 
@@ -9,9 +7,9 @@ public class Recorder {
 		String fileName = getFileName(path);
 	}
 
-	//TODO make private after test
+	// TODO make private after test
 	public String getFileName(String path) {
-		return path.substring(path.indexOf(":")+1).replace(" ","_").replace("\\", " ").trim().replace(" ", ".");
-	}	
+		return path.substring(path.indexOf(":") + 1).replace(" ", "_").replace("\\", " ").trim().replace(" ", ".");
+	}
 
 }

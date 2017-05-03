@@ -17,7 +17,7 @@ public class RecorderTest {
 		Recorder instancia = new Recorder();
 		String path = "C:\\Usuario\\musica\\rock y heavy\\los90";
 		assertEquals("Usuario.musica.rock_y_heavy.los90", instancia.getFileName(path));
-		
+
 	}
 
 }

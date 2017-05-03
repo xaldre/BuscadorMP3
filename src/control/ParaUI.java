@@ -42,8 +42,6 @@ public class ParaUI extends UI {
 			String list = buscador.buscarMp3(new File(path));
 			txtOutput.append(list);
 			recorder.save(list, path);
-			
-			
 
 		} else {
 			txtOutput.setText("Por favor, introduzca una ruta valida");
