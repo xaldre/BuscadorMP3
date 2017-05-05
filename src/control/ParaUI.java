@@ -40,8 +40,12 @@ public class ParaUI extends UI {
 			txtOutput.setText("");
 			String path = txtInput.getText();
 			String list = buscador.buscarMp3(new File(path));
-			txtOutput.append(list);
-			recorder.save(list, path);
+			if (!list.isEmpty()){
+				txtOutput.append(list);
+				recorder.saveTxt(list, path);
+			} else {
+				txtOutput.append("No se encontró ningun archivo");
+			}
 
 		} else {
 			txtOutput.setText("Por favor, introduzca una ruta valida");
