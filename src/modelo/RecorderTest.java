@@ -25,7 +25,7 @@ public class RecorderTest {
 			e.printStackTrace();
 		}
 		
-		Util.getContent();
+//		Util.getContent();
 	}
 
 	@Ignore
